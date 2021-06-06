@@ -75,9 +75,28 @@ const GetMyToDoList = (state: any = defaultState, action: any) =>
     }
 };
 
+const GetUploadData = (state: any, action: any) =>
+{
+    let upLoadData: FormData = new FormData();
+
+    switch (action.type)
+    {
+        case "GetingData": {
+            upLoadData = action.data;
+            console.log(upLoadData.getAll("UserName"));
+            return upLoadData;
+        }
+
+        default: {
+            return upLoadData;
+        }
+    }
+};
 
 
 
 
 
-export { counter, SetDepartment, GetMyToDoList };
+
+
+export { counter, SetDepartment, GetMyToDoList, GetUploadData };

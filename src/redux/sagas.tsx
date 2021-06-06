@@ -11,6 +11,7 @@ const getDepartmentAction = (data: any) => ({
     data
 });
 
+
 export function* GetTodo()
 {
     console.log("Getting");
@@ -48,10 +49,26 @@ export function* watchGetDepartement()
     yield takeEvery("GetDepartment", GetDepartment);
 }
 
+export function* GetUploadData(action: any)
+{
+    yield console.log("Im Getting" + action.data);
+    yield put({
+        type: 'GetingData',
+        data: action.data
+    });
+
+}
+
+export function* watchGetUploadData()
+{
+    yield takeEvery("GetUploadData", GetUploadData);
+}
+
 export default function* rootSage()
 {
     yield all([
         call(watchGetTodo),
-        call(watchGetDepartement)
+        call(watchGetDepartement),
+        call(watchGetUploadData)
     ]);
 }

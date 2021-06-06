@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { store, MyDepartment } from "../../redux/store";
+import { store, MyDepartment, MyGetUploadData } from "../../redux/store";
 import styled from 'styled-components';
 import Button from '@atlaskit/button';
 import Textfield from '@atlaskit/textfield';
@@ -22,6 +22,7 @@ padding:10px 10px;
 interface isState
 {
     Department: any;
+    UploadData: FormData;
 }
 class AtlaskitForm extends Component<any, isState>
 {
@@ -32,15 +33,26 @@ class AtlaskitForm extends Component<any, isState>
         // this.GetDepartment();
 
         this.state = {
-            Department: MyDepartment.getState()
+            Department: MyDepartment.getState(),
+            UploadData: MyGetUploadData.getState()
         };
+
         MyDepartment.subscribe(this.storeChange);
+
+        MyGetUploadData.subscribe(this.upLoadDataChange);
     }
 
     storeChange = () =>
     {
         this.setState({
-            Department: MyDepartment.getState()
+            Department: MyDepartment.getState(),
+        });
+    };
+
+    upLoadDataChange = () =>
+    {
+        this.setState({
+            UploadData: MyGetUploadData.getState(),
         });
     };
 
@@ -67,12 +79,26 @@ class AtlaskitForm extends Component<any, isState>
         const Commit = async () =>
         {
             const data = new FormData(document.getElementById("UserInfo") as HTMLFormElement);
+
+            MyGetUploadData.dispatch({
+                type: "GetUploadData",
+                data: data
+            });
+
+            console.log(MyGetUploadData.getState().getAll("UserName"));
+
+            this.setState({
+                UploadData: MyGetUploadData.getState()
+            });
+
+            console.log(this.state.UploadData.getAll("UserName"));
+
             try
             {
                 let response = await fetch('http://localhost/PHP_FinalExam/Main.php',
                     {
                         method: "POST",
-                        body: data
+                        body: MyGetUploadData.getState()
                     });
                 let result = await response.json();
                 console.log(result);
