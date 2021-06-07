@@ -91,6 +91,7 @@ class AtlaskitForm extends Component<any, isState>
                 UploadData: MyGetUploadData.getState()
             });
 
+            //didn't update,get from last time
             console.log(this.state.UploadData.getAll("UserName"));
 
             try
