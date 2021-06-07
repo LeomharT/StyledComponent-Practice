@@ -86,7 +86,6 @@ export default class TodoList extends Component<any, isState>
         GetTodoList.dispatch({
             type: "addItem",
         });
-        this.storeChange();
     };
 
     removeItem = (index: any) =>
@@ -95,7 +94,6 @@ export default class TodoList extends Component<any, isState>
             type: "removeItem",
             index
         });
-        this.storeChange();
     };
     render()
     {
