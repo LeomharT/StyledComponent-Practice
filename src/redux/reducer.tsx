@@ -14,7 +14,6 @@ const counter = (state: any, action: any) =>
 
 const SetDepartment = (state: any, action: any) =>
 {
-    console.log(action);
     switch (action.type)
     {
         case "GETDATA_Async": {
@@ -91,10 +90,23 @@ const GetUploadData = (state: FormData = new FormData(), action: any) =>
     }
 };
 
+const stepInfo = (state: FormData = new FormData(), action: any) =>
+{
+    switch (action.type)
+    {
+        case "SumbitInfo": {
+            state.append(action.data.name, action.data.value);
+            return state;
+        }
+        default:
+            return state;
+    }
+};
 
 
 
 
 
 
-export { counter, SetDepartment, GetMyToDoList, GetUploadData };
+
+export { counter, SetDepartment, GetMyToDoList, GetUploadData, stepInfo };

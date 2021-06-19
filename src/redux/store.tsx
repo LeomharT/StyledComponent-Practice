@@ -1,10 +1,12 @@
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from 'redux-saga';
 import rootSage from './sagas';
-import { counter, SetDepartment, GetMyToDoList, GetUploadData } from './reducer';
+import { counter, SetDepartment, GetMyToDoList, GetUploadData, stepInfo } from './reducer';
 
 
 const store = createStore(counter);
+
+const MyStepInfo = createStore(stepInfo);
 
 const sagaMiddleware: any = createSagaMiddleware();
 
@@ -37,4 +39,4 @@ sagaDepartment.run(rootSage);
 
 sageUploadData.run(rootSage);
 
-export { store, MyDepartment, GetTodoList, MyGetUploadData };
+export { store, MyDepartment, GetTodoList, MyGetUploadData, MyStepInfo };

@@ -12,6 +12,8 @@ import AtlaskitForm from './components/Atlaskit/AtlaskitForm';
 import HeaderBar from './components/HeaderBar';
 import styled from 'styled-components';
 import TodoList from './components/TodoList/TodoList';
+import StepInfo from './components/StepInfo/StepInfo';
+import 'antd/dist/antd.css';
 
 
 const Container = styled.div`
@@ -36,6 +38,9 @@ ReactDOM.render(
                 </Route>
                 <Route path="/TodoList">
                     <TodoList />
+                </Route>
+                <Route path="/ToStep">
+                    <StepInfo />
                 </Route>
             </Switch>
         </Container>

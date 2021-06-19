@@ -36,6 +36,7 @@ export default function HeaderBar(props: any)
             <Button onClick={() => { history.push("/"); }}>ToHome</Button>
             <Button onClick={() => { history.push("/Atlaskit"); }}>ToAtlaskit</Button>
             <Button onClick={() => { history.push("/TodoList"); }}>ToTodoList</Button>
+            <Button onClick={() => { history.push("/ToStep"); }}>ToStep</Button>
         </MyHeaderBar>
     );
 }
